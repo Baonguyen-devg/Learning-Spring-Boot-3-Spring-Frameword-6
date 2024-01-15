@@ -2,20 +2,27 @@ package com.example.myfirstwebapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Size;
+
 public class Todo {
 	private int id;
 	private String username;
+	
+	@Size(min = 10, message = "Enter a least 10 characters")
 	private String description;
+	
+	@FutureOrPresent(message = "Enter future or present date")
 	private LocalDate targetDate;
-	private boolean isDone;
+	private boolean done;
 
-	public Todo(int id, String username, String description, LocalDate targetDate, boolean isDone) {
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.description = description;
 		this.targetDate = targetDate;
-		this.isDone = isDone;
+		this.done = done;
 	}
 
 	public int getId() {
@@ -51,16 +58,16 @@ public class Todo {
 	}
 
 	public boolean isDone() {
-		return isDone;
+		return done;
 	}
 
-	public void setDone(boolean isDone) {
-		this.isDone = isDone;
+	public void setDone(boolean done) {
+		this.done = done;
 	}
 
 	@Override
 	public String toString() {
 		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate="
-				+ targetDate + ", isDone=" + isDone + "]";
+				+ targetDate + ", Done=" + done + "]";
 	}
 }
